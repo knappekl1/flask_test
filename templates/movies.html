@@ -1,0 +1,32 @@
+<DOCTYPE html!>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Watchable</title>
+        </head>
+    
+        <body>
+            <h1>
+                Movies to watch!
+            </h1>
+            <h2>
+                This list belongs to {{name}}
+            </h2>
+            <h3>
+                All movies {{movies}}
+
+                First Movie {{movies[0]}}
+
+                First 2 movies {{movies[0:2]}}
+            </h3>
+            <hr>
+
+            <ul>
+                {%for item in movies[:2]%}
+                    <li><b>The movie is:</b> {{item}}</li>
+
+                {%endfor%}
+
+            </ul>
+        </body>
+    </html>
