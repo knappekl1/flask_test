@@ -45,6 +45,15 @@ def top_movies():
     movie_list = ["This is my goal", "More than this", "My stalled engine","You and him"]
     return render_template("movies.html", movies=movie_list, name="Bobby")
 
+@app.route("/movies")
+def movies_plus():
+    movies_dict = {"This is my goal":3.09, "More than this":2.5, "My stalled engine":2.2,"You and him":0.8}
+    for m in movies_dict.keys():
+        print(m)
+
+    return render_template("movies2.html", movies=movies_dict, name="Sally")
+    
+
 #boilerplate
 if __name__ == "__main__":
     app.run(debug=True)

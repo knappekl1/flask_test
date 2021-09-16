@@ -1,0 +1,38 @@
+<DOCTYPE html!>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Watchable</title>
+        </head>
+    
+        <body>
+            <h1>
+                Movies ratings
+            </h1>
+            <h2>
+                This list belongs to {{name}}
+            </h2>
+           
+            <table>
+                <tr>
+                    <th>Movie</th>
+                    <th>Rating</th>
+                    <th>Comment</th>
+                </tr>
+                {%for movie, rating in movies.items()%}
+                <tr>
+                    <td>{{movie}}</td>
+                    <td>{{rating}}</td>
+                    {%if rating >= 3%}
+                        <td>Great movie</td>
+                    {%elif 3 > rating > 1.5%}
+                        <td>Average movie</td>
+                    {%else%}
+                        <td style="color:red">Poor movie</td>
+                    {%endif%}
+                </tr>
+                {%endfor%}
+            </table>
+
+        </body>
+    </html>
