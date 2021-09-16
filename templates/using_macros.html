@@ -1,0 +1,22 @@
+<DOCTYPE html!>
+{%import "macros.html" as my_macros %}
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Watchable</title>
+            <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+
+        </head>
+    
+        <body>
+            <h1>
+                Movies ratings
+            </h1>
+            <h2>
+                Working with macros
+            </h2>
+            <p>path to css files: {{url_for('static', filename='css/styles.css')}}</p>
+            {{my_macros.render_dict(movies)}}
+
+        </body>
+    </html>

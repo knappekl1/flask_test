@@ -3,6 +3,8 @@
         <head>
             <meta charset="UTF-8">
             <title>Watchable</title>
+            <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+
         </head>
     
         <body>
@@ -12,7 +14,7 @@
             <h2>
                 This list belongs to {{name}}
             </h2>
-           
+            <p>path to css files: {{url_for('static', filename='css/styles.css')}}</p>
             <table>
                 <tr>
                     <th>Movie</th>
@@ -24,7 +26,7 @@
                     <td>{{movie}}</td>
                     <td>{{rating}}</td>
                     {%if rating >= 3%}
-                        <td>Great movie</td>
+                        <td style="color:seagreen">Great movie</td>
                     {%elif 3 > rating > 1.5%}
                         <td>Average movie</td>
                     {%else%}

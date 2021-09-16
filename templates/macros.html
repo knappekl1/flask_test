@@ -1,0 +1,22 @@
+{%macro render_dict(dictionary)%}
+<table>
+    <tr>
+        <th>Movie</th>
+        <th>Rating</th>
+        <th>Comment</th>
+    </tr>
+    {%for key, val in dictionary.items()%}
+    <tr>
+        <td>{{key}}</td>
+        <td>{{vale}}</td>
+        {%if val >= 3%}
+            <td style="color:seagreen">Great movie</td>
+        {%elif 3 > val > 1.5%}
+            <td>Average movie</td>
+        {%else%}
+            <td style="color:red">Poor movie</td>
+        {%endif%}
+    </tr>
+    {%endfor%}
+</table>
+{%endmacro%}

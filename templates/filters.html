@@ -1,0 +1,47 @@
+<DOCTYPE html!>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Watchable</title>
+        </head>
+    
+        <body>
+            <h1>
+                Movies to watch!
+            </h1>
+            <h2>
+                This list belongs to {{name}}
+                <br>
+                Movie Filters test
+            </h2>
+            
+            <hr>
+
+            <ul>
+                {%for movie, score in movies|dictsort(false, "value")%}
+                    <li><b>{{movie|title}} : {{score|round(1)}}</li>
+
+                {%endfor%}
+
+            </ul>
+            <hr>
+
+            <ol>
+                <li>
+                    default value: {{name|default("value not defined",true)}}
+                </li><br>
+                <li>
+                    capital case: {{film|capitalize}}
+                </li><br>
+                <li>
+                    first item: {{movies|first}}
+                </li><br>
+                <li>
+                    create list: {{film|list}}
+                </li><br>
+                <li>
+                    create list: {{film|replace("carrol","cookie")|upper}}
+                </li><br>
+            </ol>
+        </body>
+    </html>

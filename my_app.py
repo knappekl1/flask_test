@@ -1,7 +1,16 @@
 from flask import Flask, request, render_template
+from flask_sqlalchemy import SQLAlchemy
 
 #Instantiate Flask
 app = Flask(__name__)
+
+app.config.update(
+    SECRET_KEY="topsecret",
+    SQLALCHEMY_DATABASE_URI="postgresql://postgres:Liborknappek1+@localhost:5432/catalog_db",
+    SQLALCHEMY_TRACK_MODIFICATIONS=False
+)
+
+db = SQLAlchemy(app)
 
 @app.route("/index")
 #Route
@@ -52,8 +61,31 @@ def movies_plus():
         print(m)
 
     return render_template("movies2.html", movies=movies_dict, name="Sally")
+
+@app.route("/filters")   
+def filters():
+    movies_dict = {"This is my goal":3.09, "More than this":2.5, "My stalled engine":2.2,"You and him":0.8, "Xmas carrol":2.4}
+    return render_template("filters.html", name=None, movies=movies_dict, film="Xmas carrol")
+
+@app.route("/macros")
+def macros():
+    movies_dict = {"This is my goal":3.09, "More than this":2.5, "My stalled engine":2.2,"You and him":0.8}
+    return render_template("using_macros.html", movies=movies_dict)
+
+
+class Publication(db.Model):
+    __tablename__="publication"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+
+    def __init__(self,id,name):
+        self.id = id
+        self.name = name
     
+    def __repr__(self):
+        return f"The id is: {self.id}, the name is:{self.name}"
 
 #boilerplate
 if __name__ == "__main__":
+    db.create_all()
     app.run(debug=True)
