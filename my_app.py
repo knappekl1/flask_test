@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, session, g, render_template
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -73,20 +73,23 @@ class Store(db.Model):
     def __repr__(self):
         return f"Store {self.name} inventory is {self.inventory}"
 
+@app.before_request
+def some_function():
+    g.string = "<br> This code run before any request"
 
 @app.route("/index")
 #Route
 @app.route("/")
 #Route function
 def hello_flask():
-    return "Hello Flask"
+    return "Hello Flask <br>" + g.string
 
 @app.route("/new/")
 #Request string default value in function brackets
 def query_string(greeting = "Hello!"):
     #default value passed in assignment as well
     query_val = request.args.get("greeting", greeting)
-    return f" <h1>The greeting is {query_val}</h1>"
+    return f" <h1>The greeting is {query_val}</h1>" + g.string
 
 #Variable in URL
 @app.route("/user/")
@@ -137,7 +140,12 @@ def macros():
     # db.session.commit()   
     return render_template("using_macros.html", movies=movies_dict)
 
-
+@app.route("/session")
+def session_data():
+    #session variable
+    if "name" not in session:
+        session["name"] = "Harry"
+    return render_template("session.html", session = session, name=session["name"]) 
 
 
 #boilerplate
