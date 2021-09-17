@@ -58,6 +58,21 @@ class Book(db.Model):
     def __repr__(self):
         return f"{self.title} by {self.author}"
 
+class Store(db.Model):
+    __tablename__="store"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+    inventory = db.Column(db.Integer, nullable=False)
+    book_id = db.Column(db.Integer, db.ForeignKey("book.id"))
+
+    def __init__(self, name, inventory, book_id):
+        self.name = name
+        self.inventory = inventory
+        self.book_id = book_id
+    
+    def __repr__(self):
+        return f"Store {self.name} inventory is {self.inventory}"
+
 
 @app.route("/index")
 #Route
