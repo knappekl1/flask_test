@@ -12,8 +12,10 @@ app.config.update(
     SQLALCHEMY_TRACK_MODIFICATIONS=False
 )
 
+#instantiate db
 db = SQLAlchemy(app)
 
+#create model
 class Publication(db.Model):
     __tablename__="publication"
     id = db.Column(db.Integer, primary_key=True)
